@@ -1,13 +1,11 @@
-import "./index.css";
+import "./index";
 import React from "react";
-
+import Products from "../src/pages/Products";
 const App = () => {
     return (
         <div className="App">
-            Hello Satish
-            <br />
-            This is an Ecommerce Project
-        </div >
+            <Products />
+        </div>
     );
 };
 export default App;
