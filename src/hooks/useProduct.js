@@ -10,9 +10,12 @@ function useProduct() {
 function useProductsWithCategory(category) {
     return useAxios(`/products/category/${category}`, "GET");
 }
+function useProductsWithLimit(size = 0) {
+    return useAxios(`/products?limit=${size}`, "GET");
+}
 function useSelectedProducts(cart) {
     let pathArray = cart.map(({ id }) => `/products/${id}`);
     return useGetMultuAxios(pathArray, "GET");
 }
 
-export { useProduct, useProducts, useProductsWithCategory, useSelectedProducts };
+export { useProduct, useProducts, useProductsWithCategory, useSelectedProducts, useProductsWithLimit };

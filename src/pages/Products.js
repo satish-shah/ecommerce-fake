@@ -1,11 +1,16 @@
-import { useProduct } from "../hooks/useProduct";
+import { useProductsWithCategory } from "../hooks/useProduct";
 import Loading from "../components/Loading";
 import Container from "@material-ui/core/Container";
 import ProductGrid from "../components/ProductGrid";
+import { useParams } from "react-router";
+
+
 const Products = () => {
-    const { response: products, loading } = useProduct();
+    const { category } = useParams();
+
+    const { response: products, loading } = useProductsWithCategory(category);
     if (loading) {
-        return <Loading text={`Fetching the products`} />;
+        return <Loading text={`Loading the products`} />;
     }
     return (
         <Container>

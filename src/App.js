@@ -6,6 +6,9 @@ import { CartProvider } from "./context/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Checkout from "./components/Checkout";
+import Menu from "./components/Menu";
+import Home from "./pages/Home";
+import Product from "./pages/Product"
 
 const App = () => {
     const [cart, setCart] = React.useState([]);
@@ -40,12 +43,19 @@ const App = () => {
 
                 <CartProvider value={value}>
                     <Navbar />
+                    <Menu />
                     <Switch>
                         <Route exact path="/checkout">
                             <Checkout />
                         </Route>
-                        <Route exact path="/">
+                        <Route path="/:category/:productId">
+                            <Product />
+                        </Route>
+                        <Route exact path="/:category">
                             <Products />
+                        </Route>
+                        <Route exact path="/">
+                            <Home />
                         </Route>
                     </Switch>
                 </CartProvider>

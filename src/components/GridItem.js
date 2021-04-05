@@ -1,11 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, CardMedia, CardActionArea, Fab, Typography } from "@material-ui/core"
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Typography from "@material-ui/core/Typography";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Fab from "@material-ui/core/Fab";
+
 import { useHistory } from "react-router-dom";
 
-
-import CartContext from "../context/Cart.js";
+import CartContext from "../context/Cart";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         padding: theme.spacing(1),
-        whiteSpace: "nowrap",
+        whiteSpace: "wrap",
         overflow: "hidden",
         textOverflow: "ellipsis"
     },
@@ -62,28 +66,26 @@ export default function GridItem({ product }) {
         e.preventDefault();
         cart.addItem(product.id);
     };
-    return (
-        <Card className={classes.card}>
-            <CardActionArea
-                onClick={(e) =>
-                    history.push(navigateUrl, { category: product.category })
-                }
-            >
-                <CardMedia
-                    className={classes.cardMedia}
-                    image={product.image}
-                    title={product.title}
-                    alt={product.title}
-                />
-                <CardContent className={classes.cardContent}>
-                    <Typography variant="subtitle1">{product.title}</Typography>
-                    <Typography gutterBottom variant="h6" className={classes.price}>
-                        $ {product.price}
-                    </Typography>
 
+    return (
+        <Card className={classes.root}>
+            <CardActionArea onClick={(e) => history.push(navigateUrl, { category: product.category })}>
+                <img className={classes.media} src={product.image} title={product.title} alt={product.title} />
+                <CardContent>
+                    <Typography className={classes.title} variant="subtitle1">
+                        {product.title}
+                    </Typography>
+                    <Typography className={classes.title} variant="subtitle2">
+                        {product.description}
+                    </Typography>
+                    <div className={classes.footer}>
+                        <Typography gutterBottom variant="h6" className={classes.price}>
+                            &#36;{product.price}
+                        </Typography>
+                    </div>
                 </CardContent>
             </CardActionArea>
-            <Fab color="secondary" aria-label="cart" className={classes.cartButton}>
+            <Fab color="secondary" aria-label="cart">
                 <ShoppingCartIcon onClick={(e) => addCart(e)} />
             </Fab>
         </Card>

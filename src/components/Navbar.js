@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from "@material-ui/styles"
 import { AppBar, Toolbar, Typography, IconButton, Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-//import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import CartContext from "../context/Cart";
 import Cart from "./Cart";
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
         textDecoration: "none",
-       // color: theme.palette.secondary.main,
+        //color: theme.palette.secondary.main,
     },
 }));
 
@@ -26,20 +26,20 @@ function Navbar() {
     const { cart } = React.useContext(CartContext);
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
+
     const handleClose = () => {
-      setOpen(false);
+        setOpen(false);
     };
     return (
         <div className={classes.root}>
-            <AppBar position="fixed">
+            <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                    
-                            Ecommerse App
-                        
+                        <Link className={classes.logo} to="/">
+                            Ecommerce App
+                        </Link>
                     </Typography>
                     <div>
                         <IconButton
@@ -48,7 +48,6 @@ function Navbar() {
                             aria-haspopup="true"
                             color="inherit"
                             onClick={handleClickOpen}
-
                         >
                             <Badge badgeContent={cart.length} color="secondary">
                                 <ShoppingCartIcon />
