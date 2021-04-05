@@ -3,7 +3,10 @@ import React from "react";
 import Products from "../src/pages/Products";
 import Navbar from "./components/Navbar";
 import { CartProvider } from "./context/Cart";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Checkout from "./components/Checkout";
+
 const App = () => {
     const [cart, setCart] = React.useState([]);
     let tempCart = [...cart];
@@ -37,8 +40,14 @@ const App = () => {
 
                 <CartProvider value={value}>
                     <Navbar />
-                    <Products />
-
+                    <Switch>
+                        <Route exact path="/checkout">
+                            <Checkout />
+                        </Route>
+                        <Route exact path="/">
+                            <Products />
+                        </Route>
+                    </Switch>
                 </CartProvider>
 
             </Router>

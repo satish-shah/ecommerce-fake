@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 //import { Link } from "react-router-dom"
 
 import CartContext from "../context/Cart";
-//import Cart from "./Cart";
+import Cart from "./Cart";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +34,7 @@ function Navbar() {
     };
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                     
@@ -47,6 +47,7 @@ function Navbar() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             color="inherit"
+                            onClick={handleClickOpen}
 
                         >
                             <Badge badgeContent={cart.length} color="secondary">
@@ -56,7 +57,7 @@ function Navbar() {
                     </div>
                 </Toolbar>
             </AppBar>
-         
+            {open && <Cart open={open} handleClose={handleClose} />}
         </div>
     );
 }
