@@ -80,15 +80,12 @@ export default function GridItem({ product }) {
                     <Typography gutterBottom variant="h6" className={classes.price}>
                         $ {product.price}
                     </Typography>
-                    <Fab
-                        color="secondary"
-                        aria-label="cart"
-                        className={classes.cartButton}
-                    >
-                        <ShoppingCartIcon onClick={(e) => addCart(e)} />
-                    </Fab>
+
                 </CardContent>
             </CardActionArea>
+            <Fab color="secondary" aria-label="cart" className={classes.cartButton}>
+                <ShoppingCartIcon onClick={(e) => addCart(e)} />
+            </Fab>
         </Card>
     );
 }
